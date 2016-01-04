@@ -1,0 +1,8 @@
+/orientdb*/backup
+/orientdb*/databases
+/arangodb*/arangodb
+/arangodb*/arangodb-apps
+/arangodb*/log
+/arangodb*/arangodb-foxxes
+*~
+

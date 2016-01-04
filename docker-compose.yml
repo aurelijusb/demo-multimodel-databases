@@ -1,0 +1,96 @@
+orientdb1:
+  image: orientdb/orientdb:2.1.5
+  ports:
+   - "24241:2424"
+   - "24801:2480"
+  volumes:
+   - ./orientdb1/config:/orientdb/config
+   - ./orientdb1/backup:/orientdb/backup
+   - ./orientdb1/databases:/orientdb/databases
+  hostname: orientdb1
+  environment:
+   - ORIENTDB_ROOT_PASSWORD=rootpwd
+   - ORIENTDB_NODE_NAME=node1
+
+orientdb2:
+  image: orientdb/orientdb:2.1.5
+  ports:
+   - "24242:2424"
+   - "24802:2480"
+  volumes:
+   - ./orientdb2/config:/orientdb/config
+   - ./orientdb2/backup:/orientdb/backup
+   - ./orientdb2/databases:/orientdb/databases
+  hostname: orientdb2
+  environment:
+   - ORIENTDB_ROOT_PASSWORD=rootpwd
+   - ORIENTDB_NODE_NAME=node2
+
+orientdb3:
+  image: orientdb/orientdb:2.1.5
+  ports:
+   - "24243:2424"
+   - "24803:2480"
+  volumes:
+   - ./orientdb3/config:/orientdb/config
+   - ./orientdb3/backup:/orientdb/backup
+   - ./orientdb3/databases:/orientdb/databases
+  hostname: orientdb3
+  environment:
+   - ORIENTDB_ROOT_PASSWORD=rootpwd
+   - ORIENTDB_NODE_NAME=node3
+
+arangodb1:
+  image: arangodb/arangodb:2.7.1
+  ports:
+   - "45291:8529"
+  volumes:
+   - ./arangodb1/arangodb:/var/lib/arangodb
+   - ./arangodb1/arangodb-apps:/var/lib/arangodb-apps
+   - ./arangodb1/log:/var/log/arangodb
+   - ./arangodb1/arangodb-foxxes:/var/lib/arangodb-foxxes
+  hostname: arangodb1
+  environment:
+   - ARANGODB_USERNAME=root
+   - ARANGODB_PASSWORD=rootpwd
+
+arangodb2:
+  image: arangodb/arangodb:2.7.1
+  ports:
+   - "45292:8529"
+  volumes:
+   - ./arangodb2/arangodb:/var/lib/arangodb
+   - ./arangodb2/arangodb-apps:/var/lib/arangodb-apps
+   - ./arangodb2/log:/var/log/arangodb
+   - ./arangodb2/arangodb-foxxes:/var/lib/arangodb-foxxes
+  hostname: arangodb2
+  environment:
+   - ARANGODB_USERNAME=root
+   - ARANGODB_PASSWORD=rootpwd
+
+arangodb3:
+  image: arangodb/arangodb:2.7.1
+  ports:
+   - "45293:8529"
+  volumes:
+   - ./arangodb3/arangodb:/var/lib/arangodb
+   - ./arangodb3/arangodb-apps:/var/lib/arangodb-apps
+   - ./arangodb3/log:/var/log/arangodb
+   - ./arangodb3/arangodb-foxxes:/var/lib/arangodb-foxxes
+  hostname: arangodb3
+  environment:
+   - ARANGODB_USERNAME=root
+   - ARANGODB_PASSWORD=rootpwd
+
+multimodel:
+  build: .
+  volumes:
+   - ./php:/php
+  hostname: multimodel
+  links:
+   - orientdb1
+   - orientdb2
+   - orientdb3
+   - arangodb1
+   - arangodb2
+   - arangodb3
