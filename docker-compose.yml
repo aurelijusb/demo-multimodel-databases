@@ -39,6 +39,9 @@ orientdb3:
   environment:
    - ORIENTDB_ROOT_PASSWORD=rootpwd
    - ORIENTDB_NODE_NAME=node3
+  links:
+   - orientdb1
+   - orientdb2
 
 arangodb1:
   image: arangodb/arangodb:2.7.1
@@ -81,12 +84,19 @@ arangodb3:
   environment:
    - ARANGODB_USERNAME=root
    - ARANGODB_PASSWORD=rootpwd
+  links:
+   - arangodb1
+   - arangodb2
 
 multimodel:
   build: .
   volumes:
    - ./php:/php
   hostname: multimodel
+  ports:
+   - "9090:9090"
+  expose:
+   - "9090"
   links:
    - orientdb1
    - orientdb2

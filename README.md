@@ -38,7 +38,28 @@ docker ps -a
 docker logs
 ./docker-remove-all.sh
 docker rm `docker ps --no-trunc -aq`
+docker rmi -f docker_multimodel
 ./clear-data.sh
+```
+
+Connecting to container
+-----------------------
+
+For debuging purposes, you can connect to existing container:
+check environment and connection to other containers.
+
+```
+docker exec -i -t docker_arangodb3_1 bash
+docker exec -i -t docker_orientdb3_1 bash
+```
+
+Useful commands inside container:
+
+```
+cat /etc/hosts
+printenv
+ip addr show
+
 ```
 
 For debugging
