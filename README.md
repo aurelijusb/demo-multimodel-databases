@@ -1,4 +1,4 @@
-ArangoDB + OrinetDB + PHP example
+ArangoDB + OrientDB + PHP example
 =================================
 
 Prerequisites
@@ -16,8 +16,7 @@ Running stack
 -------------
 
 ```
-docker-compose -f docker-compose.yml run multimodel
-docker ps
+docker-compose up -d
 ```
 
 You will see bindings to ports:
@@ -28,12 +27,14 @@ You will see bindings to ports:
 * http://0.0.0.0:24801
 * http://0.0.0.0:24802
 * http://0.0.0.0:24803
+* http://0.0.0.0:8000
 
 OrientDB web console: http://127.0.0.1:24801 with `root`:`rootpdw`
 
 Useful docker commands:
 
 ```
+docker ps
 docker ps -a
 docker logs
 ./docker-remove-all.sh
@@ -51,6 +52,7 @@ check environment and connection to other containers.
 ```
 docker exec -i -t docker_arangodb3_1 bash
 docker exec -i -t docker_orientdb3_1 bash
+docker exec -i -t docker_multimodel_1 bash
 ```
 
 Useful commands inside container:
@@ -59,7 +61,7 @@ Useful commands inside container:
 cat /etc/hosts
 printenv
 ip addr show
-
+ps aux
 ```
 
 For debugging
@@ -92,3 +94,5 @@ References
 * https://docs.docker.com/compose/
 * https://github.com/orientechnologies/orientdb-docker
 * https://github.com/arangodb/arangodb-docker/tree/2.7
+* https://docs.docker.com/v1.8/compose/wordpress/
+* http://stackoverflow.com/questions/25591413/docker-with-php-built-in-server

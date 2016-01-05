@@ -89,18 +89,16 @@ arangodb3:
    - arangodb2
 
 multimodel:
-  build: .
+  image: php:7.0
+  command: php -S 0.0.0.0:8000 /php/index.php
+  ports:
+   - "8000:8000"
   volumes:
    - ./php:/php
-  hostname: multimodel
-  ports:
-   - "9090:9090"
-  expose:
-   - "9090"
   links:
-   - orientdb1
-   - orientdb2
-   - orientdb3
    - arangodb1
    - arangodb2
    - arangodb3
+   - orientdb1
+   - orientdb2
+   - orientdb3
