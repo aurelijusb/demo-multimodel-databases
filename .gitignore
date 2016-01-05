@@ -5,4 +5,6 @@
 /arangodb*/log
 /arangodb*/arangodb-foxxes
 *~
-
+/php/vendor
+/php/composer.phar
+.idea

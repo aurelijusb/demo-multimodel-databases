@@ -15,3 +15,15 @@ foreach($hosts as $host) {
 	echo '<pre>' . implode("\n", get_headers('http://' . $host)) . '</pre>';
 }
 
+echo "<h2>Other examples</h2>";
+
+if (file_exists("vendor/triagens/arangodb/autoload.php")) {
+   echo <<<HTML
+    <ol>
+        <li><a href="arango.php">Arango example</a></li>
+    </ol>
+HTML;
+} else {
+    echo "<div style='background: #FFDDDD'>Examples not ready. Use Composer to install them. README.md for details</div>";
+}
+

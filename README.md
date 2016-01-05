@@ -17,6 +17,10 @@ Running stack
 
 ```
 docker-compose up -d
+
+cd php/
+curl -sS https://getcomposer.org/installer | php
+php composer.phar install
 ```
 
 You will see bindings to ports:
@@ -41,6 +45,7 @@ docker logs
 docker rm `docker ps --no-trunc -aq`
 docker rmi -f docker_multimodel
 ./clear-data.sh
+docker rm -f docker_multimodel_1 && docker-compose up -d && docker logs -f docker_multimodel_1
 ```
 
 Connecting to container
@@ -89,6 +94,19 @@ So you could access datbases (`root:rootpwd`) via:
 * http://arangodb2.local:45292
 * http://arangodb3.local:45293
 * http://multimodel.local:8000
+
+Usefull ArangoDB commands, snippets
+-----------------------------------
+
+```
+arangosh --server.endpoint tcp://0.0.0.0:45293 --server.username root
+```
+```
+db._collections()
+db.products.toArray()
+```
+
+
 
 References
 ----------
