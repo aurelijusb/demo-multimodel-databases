@@ -70,23 +70,25 @@ For debugging
 Browsers can mess-up cookies when host is different only by port.
 Recommended:
 ```
-echo "127.0.0.1 orientdb1
-127.0.0.1 orientdb2
-127.0.0.1 orientdb3
-127.0.0.1 arangodb1
-127.0.0.1 arangodb2
-127.0.0.1 arangodb3
+echo "127.0.0.1 orientdb1.local
+127.0.0.1 orientdb2.local
+127.0.0.1 orientdb3.local
+127.0.0.1 arangodb1.local
+127.0.0.1 arangodb2.local
+127.0.0.1 arangodb3.local
+127.0.0.1 multimodel.local
 " >> /etc/hosts
 ```
 
 So you could access datbases (`root:rootpwd`) via:
 
-* http://orientdb1:24801
-* http://orientdb2:24802
-* http://orientdb3:24803
-* http://arangodb1:45291
-* http://arangodb2:45292
-* http://arangodb3:45293
+* http://orientdb1.local:24801
+* http://orientdb2.local:24802
+* http://orientdb3.local:24803
+* http://arangodb1.local:45291
+* http://arangodb2.local:45292
+* http://arangodb3.local:45293
+* http://multimodel.local:8000
 
 References
 ----------
