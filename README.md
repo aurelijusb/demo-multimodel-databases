@@ -41,6 +41,7 @@ Useful docker commands:
 docker ps
 docker ps -a
 docker logs
+docker-compose logs
 ./docker-remove-all.sh
 docker rm `docker ps --no-trunc -aq`
 docker rmi -f docker_multimodel
@@ -103,9 +104,13 @@ arangosh --server.endpoint tcp://0.0.0.0:45293 --server.username root
 ```
 ```
 db._collections()
-db.products.toArray()
+db.Elements.toArray()
 ```
 
+Usefull OrientDB commands, snippets
+-----------------------------------
+
+```
 
 
 References
@@ -116,3 +121,4 @@ References
 * https://github.com/arangodb/arangodb-docker/tree/2.7
 * https://docs.docker.com/v1.8/compose/wordpress/
 * http://stackoverflow.com/questions/25591413/docker-with-php-built-in-server
+* https://github.com/docker-library/docs/blob/master/php/README.md

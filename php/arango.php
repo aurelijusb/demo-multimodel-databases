@@ -10,7 +10,7 @@ use triagens\ArangoDb\UpdatePolicy;
 require 'vendor/autoload.php';
 
 // Connect
-$connectionOptions =array(
+$connectionOptions = array(
     ConnectionOptions::OPTION_ENDPOINT => 'tcp://arangodb3:8529',
     ConnectionOptions::OPTION_AUTH_TYPE => 'Basic',
     ConnectionOptions::OPTION_AUTH_USER => 'root',
@@ -23,8 +23,8 @@ $connectionOptions =array(
 );
 $connection = new Connection($connectionOptions);
 
-// create a new collection
-$collectionName = "products";
+// Create a new collection
+$collectionName = "Elements";
 $collection = new Collection($collectionName);
 $collectionHandler = new CollectionHandler($connection);
 if ($collectionHandler->has($collectionName)) {
@@ -32,16 +32,23 @@ if ($collectionHandler->has($collectionName)) {
 }
 $collectionId = $collectionHandler->create($collection);
 
-// Add new document
+// Add new documents
 $documentHandler = new DocumentHandler($connection);
-$document = new Document();
-$document->set("now", date('Y-m-d H:i:s'));
-$documentId = $documentHandler->save($collectionName, $document);
+
+$document1 = new Document();
+$document1->set("now", date('Y-m-d H:i:s'));
+
+$document2 = new Document();
+$document2->set("created", ['during' => ['VilniusPHP', 'event']]);
+
+$documentId1 = $documentHandler->save($collectionName, $document1);
+$documentId2 = $documentHandler->save($collectionName, $document2);
 
 // Read them all
 $documents = $collectionHandler->all($collectionId);
 foreach ($documents as $document) {
     /** @var $document Document */
-    echo "<h2>" . htmlspecialchars($document->getInternalId()) . '</h2>';
-    echo '<pre>' . json_encode($document->getAll(), JSON_PRETTY_PRINT) . '</pre>';
+    echo '<h2>'.htmlspecialchars($document->getInternalId()).'</h2>';
+    echo "<div><b>Revision:</b> {$document->getRevision()}</b>";
+    echo '<pre>'.json_encode($document->getAll(), JSON_PRETTY_PRINT).'</pre>';
 }

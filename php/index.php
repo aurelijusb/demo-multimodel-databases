@@ -20,7 +20,8 @@ echo "<h2>Other examples</h2>";
 if (file_exists("vendor/triagens/arangodb/autoload.php")) {
    echo <<<HTML
     <ol>
-        <li><a href="arango.php">Arango example</a></li>
+        <li><a href="arango.php">ArangoDB simple example</a></li>
+        <li><a href="orient.php">OrientDB simple example</a></li>
     </ol>
 HTML;
 } else {

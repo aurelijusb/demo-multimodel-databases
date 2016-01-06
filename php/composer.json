@@ -1,5 +1,6 @@
 {
     "require": {
-        "triagens/arangodb": "~2.4"
+        "triagens/arangodb": "~2.4",
+        "ostico/phporient": "~1.2"
     }
 }
