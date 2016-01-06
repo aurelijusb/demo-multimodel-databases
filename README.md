@@ -110,8 +110,14 @@ db.Elements.toArray()
 Usefull OrientDB commands, snippets
 -----------------------------------
 
-```
+Create alias `orientdb-console` for `orientdb-community-2.1.5/bin/console.sh`
+Inside console:
 
+```
+connect remote:0.0.0.0:24243/demo root rootpwd
+list classes
+browse class Elements
+```
 
 References
 ----------
